@@ -6,8 +6,7 @@ import MySiteScreen from "./screens/mySite";
 import BoxesScreen from "./screens/boxes"
 import ExtraScreen from "./screens/extra"
 import MealsScreen from "./screens/meals"
-// // import { Icon } from "react-native-vector-icons"
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const Tab = TabNavigator({
@@ -15,35 +14,35 @@ const Tab = TabNavigator({
     screen: NewsScreen,
     navigationOptions: {
       title: "Netop nu",
-    //   tabBarIcon: ({ tintColor }) => (<Icon name='ios-star-outline' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
+      tabBarIcon: ({ tintColor }) => (<Icon name='ios-star' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
     }
   },
   Boxes: {
     screen: BoxesScreen,
     navigationOptions: {
       title: "Kasser",
-     // tabBarIcon: ({ tintColor }) => (<Icon name='ios-cube-outline' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
+      tabBarIcon: ({ tintColor }) => (<Icon name='ios-cube' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
     }
   },
   Meals: {
     screen: MealsScreen,
     navigationOptions: {
       title: "Måltider",
-     // tabBarIcon: ({ tintColor }) => (<Icon name='ios-pizza-outline' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
+      tabBarIcon: ({ tintColor }) => (<Icon name='ios-pizza' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
     }
   },
   Extra: {
     screen: ExtraScreen,
     navigationOptions: {
       title: "Extra",
-     // tabBarIcon: ({ tintColor }) => (<Icon name='ios-nutrition-outline' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
+      tabBarIcon: ({ tintColor }) => (<Icon name='ios-nutrition' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
     }
   },
   MySite: {
     screen: MySiteScreen,
     navigationOptions: {
       title: "Min Side",
-    //  tabBarIcon: ({ tintColor }) => (<Icon name='ios-calendar-outline' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
+      tabBarIcon: ({ tintColor }) => (<Icon name='ios-calendar' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
     }
   },
 }, {
