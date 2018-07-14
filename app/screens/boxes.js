@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ListView, Dimensions, TouchableHighlight } from 'react-native';
 import { observer } from 'mobx-react/native'
 import boxesStore from '../store/boxesStore'
 import Header from '../components/Header'
@@ -16,17 +16,12 @@ export default class boxes extends Component {
 
   render() {
 
-    let boxes = boxesStore.boxes.map((category) => {
-      category.Products.map((product) => {
-        return <Text>{product.Name}</Text>
-      })
-
-    })
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
     return (
       <View style={styles.container}>
         <Header title={"Kasser"} />
+
         {boxesStore.loading &&
           <Text>LOADING ....</Text>
         }
@@ -34,6 +29,7 @@ export default class boxes extends Component {
         {boxesStore.error &&
           <Text>There was an error</Text>
         }
+        
         <ListView
           style={{marginBottom: 10}}
           dataSource={ds.cloneWithRows(boxesStore.boxes)}
@@ -42,7 +38,7 @@ export default class boxes extends Component {
               <Text style={{ color: "green", marginLeft: 5 }}>{data.Name}</Text>
               {data.Products.map(function (product) {
                 return (
-                <BoxListItem data={product}/>
+                <BoxListItem key={product.Id} data={product}/>
                 )
               })}
             </View>

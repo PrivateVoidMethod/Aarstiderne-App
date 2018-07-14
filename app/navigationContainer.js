@@ -1,24 +1,47 @@
 import React from "react";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import { StyleSheet, View, Text, StatusBar } from "react-native";
 import NewsScreen from "./screens/news";
 import MySiteScreen from "./screens/mySite";
 import BoxesScreen from "./screens/boxes"
 import ExtraScreen from "./screens/extra"
 import MealsScreen from "./screens/meals"
+import DetailsScreen from "./screens/details"
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
+const BoxesStack = StackNavigator({
+  Boxes: BoxesScreen,
+  Details: DetailsScreen,
+},
+{
+  headerMode: 'none'
+});
+
+BoxesStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+  };
+};
 
 const Tab = TabNavigator({
   News: {
     screen: NewsScreen,
     navigationOptions: {
       title: "Netop nu",
-      tabBarIcon: ({ tintColor }) => (<Icon name='ios-star' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
+      tabBarIcon: ({ tintColor }) => (<Icon name='ios-star' style={{ color: tintColor, fontSize: 28, width: 25 }} />),
+      header: {
+        visible: false,
+      }
     }
   },
   Boxes: {
-    screen: BoxesScreen,
+    screen: BoxesStack,
     navigationOptions: {
       title: "Kasser",
       tabBarIcon: ({ tintColor }) => (<Icon name='ios-cube' style={{ color: tintColor, fontSize: 28, width: 25 }} />)
@@ -66,9 +89,9 @@ const Tab = TabNavigator({
     },
   });
 
- export const DefaultNavigator = () =>
-  <View style={{flex: 1}}>
-    <StatusBar   backgroundColor="darkgreen"
-     setBarStyle="darkgreen" />
-   <Tab />
- </View>
+export const DefaultNavigator = () =>
+  <View style={{ flex: 1 }}>
+    <StatusBar backgroundColor="darkgreen"
+      setBarStyle="darkgreen" />
+    <Tab />
+  </View>
