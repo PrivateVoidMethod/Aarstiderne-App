@@ -15,9 +15,9 @@ const BoxesStack = StackNavigator({
   Boxes: BoxesScreen,
   Details: DetailsScreen,
 },
-{
-  headerMode: 'none'
-});
+  {
+    headerMode: 'none'
+  });
 
 BoxesStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;

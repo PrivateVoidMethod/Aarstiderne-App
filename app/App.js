@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { DefaultNavigator } from "./navigationContainer";
 
 console.disableYellowBox = true;
@@ -7,10 +7,10 @@ console.disableYellowBox = true;
 export default class App extends Component {
   render() {
     return (
-      <DefaultNavigator /> 
+      <DefaultNavigator />
     );
   }
-} 
+}
 
 const styles = StyleSheet.create({
 });

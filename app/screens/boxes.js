@@ -29,16 +29,16 @@ export default class boxes extends Component {
         {boxesStore.error &&
           <Text>There was an error</Text>
         }
-        
+
         <ListView
-          style={{marginBottom: 10}}
+          style={styles.boxesList}
           dataSource={ds.cloneWithRows(boxesStore.boxes)}
           renderRow={(data) =>
             <View>
-              <Text style={{ color: "green", marginLeft: 5 }}>{data.Name}</Text>
+              <Text style={styles.category}>{data.Name}</Text>
               {data.Products.map(function (product) {
                 return (
-                <BoxListItem key={product.Id} data={product}/>
+                  <BoxListItem key={product.Id} data={product} />
                 )
               })}
             </View>
@@ -53,6 +53,13 @@ export default class boxes extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-      height: windowHeight
+    height: windowHeight
+  },
+  category: {
+    color: "green",
+    marginLeft: 5
+  },
+  boxesList: {
+    marginBottom: 10
   }
 });
