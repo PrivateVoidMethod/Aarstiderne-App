@@ -13,10 +13,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const BoxesStack = StackNavigator({
   Boxes: BoxesScreen,
-  Details: DetailsScreen,
+  Details: {
+    screen: DetailsScreen,
+    navigationOptions: {
+      gesturesEnabled: false
+    }
+  }
 },
+
   {
-    headerMode: 'none'
+    headerMode: 'none',
+
   });
 
 BoxesStack.navigationOptions = ({ navigation }) => {
@@ -26,6 +33,16 @@ BoxesStack.navigationOptions = ({ navigation }) => {
   }
   return {
     tabBarVisible,
+  };
+};
+
+BoxesStack.navigationOptions = ({ navigation }) => {
+  let swipeEnabled = true;
+  if (navigation.state.index > 0) {
+    swipeEnabled = false;
+  }
+  return {
+    swipeEnabled,
   };
 };
 
