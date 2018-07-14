@@ -28,21 +28,14 @@ const BoxesStack = StackNavigator({
 
 BoxesStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-  return {
-    tabBarVisible,
-  };
-};
-
-BoxesStack.navigationOptions = ({ navigation }) => {
   let swipeEnabled = true;
   if (navigation.state.index > 0) {
+    tabBarVisible = false;
     swipeEnabled = false;
   }
   return {
-    swipeEnabled,
+    tabBarVisible,
+    swipeEnabled
   };
 };
 
