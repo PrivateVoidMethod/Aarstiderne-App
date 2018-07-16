@@ -12,19 +12,20 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const BoxesStack = StackNavigator({
-  Boxes: BoxesScreen,
+  Boxes: {
+    screen: BoxesScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
   Details: {
     screen: DetailsScreen,
     navigationOptions: {
-      gesturesEnabled: false
+      gesturesEnabled: false,
+      header: null
     }
   }
-},
-
-  {
-    headerMode: 'none',
-
-  });
+});
 
 BoxesStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
