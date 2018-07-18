@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Animated, ListView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image, ScrollView, Animated, ListView, TouchableOpacity } from 'react-native';
 import detailsStore from '../store/detailsStore'
 import { observer } from 'mobx-react/native'
 import Header from '../components/Header'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const windowWidth = Dimensions.get("window").widths;
@@ -47,7 +48,7 @@ export default class details extends Component {
           ],
         }]}>
         </Animated.Image>
-        <Header title={"Details"} />
+        <Header title={"Details"} backNavigation={true} />
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{detailsStore.item.Name}</Text>
         </View>
@@ -63,6 +64,7 @@ export default class details extends Component {
           <View elevation={5} style={styles.descriptionContainer}>
             <Text style={styles.description}>{detailsStore.item.Description}</Text>
           </View>
+          <View>
           <View style={styles.contentHeaderContainer}>
             <Text style={styles.category}>Indhold</Text>
             <Text style={styles.weekNumberText}>{detailsStore.item.WeekNumber}</Text>
@@ -70,65 +72,71 @@ export default class details extends Component {
           <ListView
             dataSource={ds.cloneWithRows(detailsStore.ingredients)}
             renderRow={(data) =>
-              <View elevation={1} style={styles.contentItem}>
-                <Text style={styles.contentText}>{data.Name}</Text>
-              </View>
-            }>
+                <View elevation={1} style={styles.contentItem}>
+                 <TouchableOpacity onPress={() => console.log('pressed')}>
+                 <View>
+                  <Text style={styles.contentText}>{data.Name}</Text>
+                  <Icon name='ios-information-circle-outline' style={styles.infoIcon} />
+                  </View>
+                  </TouchableOpacity>
+                </View>
+                }>
           </ListView>
-          <View style={{ marginBottom: 200 }}></View>
+          </View>
+              <View style={{ marginBottom: 200 }}></View>
         </Animated.ScrollView>
       </View>
-    );
+        );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+          container: {
+          flex: 1,
     backgroundColor: '#eeecec',
   },
   scrollViewContentContainer: {
-    marginTop: IMAGE_HEIGHT - 60,
+          marginTop: IMAGE_HEIGHT - 60,
     backgroundColor: '#eeecec',
     marginBottom: 200
   },
   titleContainer: {
-    position: 'absolute', top: 160, left: 0, right: 0,
+          position: 'absolute', top: 160, left: 0, right: 0,
     height: 60,
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
     paddingTop: 15
   },
   title: {
-    marginLeft: 15,
+          marginLeft: 15,
     color: 'white',
     fontSize: 20,
   },
   image: {
-    resizeMode: 'cover',
+          resizeMode: 'cover',
     position: 'absolute', top: 0, left: 0, right: 0,
     height: IMAGE_HEIGHT,
     alignSelf: 'center',
   },
   category: {
-    color: 'green',
+          color: 'green',
     marginTop: 10,
     marginBottom: 5,
     marginLeft: 15,
     fontSize: 17
   },
   descriptionContainer: {
-    backgroundColor: 'white',
+          backgroundColor: 'white',
   },
   description: {
-    color: 'black',
+          color: 'black',
     padding: 15,
     fontSize: 17
   },
   contentHeaderContainer: {
-    flexDirection: 'row'
+          flexDirection: 'row'
   },
   weekNumberText: {
-    color: 'grey',
+          color: 'grey',
     marginTop: 10,
     marginBottom: 5,
     marginLeft: 15,
@@ -138,16 +146,24 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   contentItem: {
-    flex: 1,
+          flex: 1,
     borderBottomWidth: 0.2,
     borderBottomColor: 'lightgrey',
     backgroundColor: 'white',
 
   },
   contentText: {
-    color: 'black',
+          color: 'black',
     padding: 15,
     fontSize: 17
+  },
+  infoIcon: {
+          marginTop: 10,
+    position: "absolute",
+    right: 0,
+    marginRight: 15,
+    fontSize: 28, 
+    color: 'grey'
   }
 
 });
